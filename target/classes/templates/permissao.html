@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Projeto piloto</title>
+</head>
+<h1 th:text="${mensagem}"></h1>
+<section class="layout-content" layout:fragment="conteudo">
+    <div class="container">
+        <nav class="navbar navbar-expand-md navbar-top bg-secondary text-light">
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav  mr-auto">
+                    <li class="nav-item active">
+                        <h4>Cadastro de Permissão</h4>
+                    </li>
+                </ul>
+                <a class="btn btn-primary btn-md" th:href="@{/listarPermissao}" role="button">
+                    <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span> <span>Listar Permissões</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <div class="container p-5" id="cadastro">
+        <form action="/salvarPermissao" method="POST" th:object="${permissao}">
+            <div class="form-group row  p-5">
+                <label for="usuario" class="col-sm-4 col-form-label">Usuário</label>
+                <div class="col-sm-8">
+                    <select class="form-control" id="usuario" th:field="*{usuario}">
+                        <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nome}">Selecione...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row  p-5">
+                <label for="role" class="col-sm-4 col-form-label">Papel</label>
+                <div class="col-sm-8">
+                    <select class="form-control" id="role" th:field="*{role}">
+                        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.nomeRole}">Selecione...</option>
+                    </select>
+                </div>
+            </div>
+            <input type="hidden" id="id" th:field="*{id}" value="" />
+            <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.edu.pds</groupId>
-	<artifactId>piloto</artifactId>
+	<artifactId>beachTennis</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>piloto</name>
-	<description>Projeto Piloto Spring Boot</description>
+	<description>Projeto Beach Tennis</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

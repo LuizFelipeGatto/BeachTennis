@@ -1,6 +1,7 @@
 package br.edu.pds.piloto.model;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -22,5 +23,16 @@ public class Usuario {
     @NotBlank(message = "Preencha o campo Senha")
     private String senha;
 
+    @Column
+    @CPF(message = "Preencha corretamente o CPF")
+    private String cpf;
+
+    @Column
+    @NotBlank(message = "Preencha o campo telefone")
+    private String telefone;
+
+    @JoinColumn
+    @OneToOne
+    private Cidade naturalidade;
 
 }

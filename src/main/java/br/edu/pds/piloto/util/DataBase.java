@@ -16,9 +16,9 @@ public class DataBase {
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/piloto?useTimezone=true&serverTimezone=America/Sao_Paulo");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/beachTennis?useTimezone=true&serverTimezone=America/Sao_Paulo");
         dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setPassword("mysql10");
         return dataSource;
     }
 

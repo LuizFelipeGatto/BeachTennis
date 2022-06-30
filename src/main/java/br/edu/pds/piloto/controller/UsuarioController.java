@@ -1,6 +1,7 @@
 package br.edu.pds.piloto.controller;
 
 import br.edu.pds.piloto.model.Usuario;
+import br.edu.pds.piloto.repository.CidadeRepositorio;
 import br.edu.pds.piloto.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,10 +22,14 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private CidadeRepositorio cidadeRepositorio;
+
     @GetMapping("/cadastrarUsuario")
     public ModelAndView cadastrar(Usuario usuario){
         ModelAndView mv = new ModelAndView("usuario");
         mv.addObject("usuario", usuario);
+        mv.addObject("cidades", cidadeRepositorio.findAll());
         return mv;
     }
 
