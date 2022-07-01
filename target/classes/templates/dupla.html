@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Projeto piloto</title>
+</head>
+<h1 th:text="${mensagem}"></h1>
+<section class="layout-content" layout:fragment="conteudo">
+  <div class="container">
+    <nav class="navbar navbar-expand-md navbar-top bg-secondary text-light">
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav  mr-auto">
+          <li class="nav-item active">
+            <h4>Cadastro de Duplas</h4>
+          </li>
+        </ul>
+        <a class="btn btn-primary btn-md" th:href="@{/listarDupla}" role="button">
+          <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span> <span>Listar Duplas</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+  <div class="container p-5" id="cadastro">
+    <form action="/salvarDupla" method="POST" th:object="${dupla}">
+      <div class="form-group row  p-5">
+        <label for="primeiro" class="col-sm-4 col-form-label">Primeiro da dupla</label>
+        <div class="col-sm-8">
+          <select class="form-control" id="primeiro" th:field="*{primeiro}">
+            <option th:each="usuarioJog : ${jogadores}" th:value="${usuarioJog.usuario.id}" th:text="${usuarioJog.usuario.nome}">Selecione...</option>
+          </select>
+        </div>
+      </div>
+        <div class="form-group row  p-5">
+          <label for="segundo" class="col-sm-4 col-form-label">Segundo da dupla</label>
+          <div class="col-sm-8">
+            <select class="form-control" id="segundo" th:field="*{segundo}">
+              <option th:each="usuarioJog : ${jogadores}" th:value="${usuarioJog.usuario.id}" th:text="${usuarioJog.usuario.nome}">Selecione...</option>
+            </select>
+          </div>
+        </div>
+      <input type="hidden" id="id" th:field="*{id}" value="" />
+      <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+    </form>
+  </div>
+</section>
+</body>
+</html>

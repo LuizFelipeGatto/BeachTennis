@@ -3,7 +3,7 @@
       layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Projeto piloto</title>
+    <title>Beach Tennis Sports</title>
 </head>
 <h1 th:text="${mensagem}"></h1>
 <section class="layout-content" layout:fragment="conteudo">
@@ -12,12 +12,12 @@
                 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <h4>Lista de Cidades</h4>
+                            <h4>Lista de Jogadores</h4>
                         </li>
                     </ul>
-                    <a class="btn btn-primary btn-md" th:href="@{/cadastrarCidade}" role="button">
+                    <a class="btn btn-primary btn-md" th:href="@{/cadastrarJogador}" role="button">
                         <span class="oi oi-plus" title="Cadastro" aria-hidden="true">
-                           Cadastrar Cidade
+                           Cadastrar Jogador
                         </span>
                     </a>
                 </div>
@@ -29,18 +29,16 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Cidade</th>
-                        <th>Estado</th>
+                        <th>Nome</th>
                         <th>Ação</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="cidade : ${cidades}">
-                        <td th:text="${cidade.id}"></td>
-                        <td th:text="${cidade.nome}"></td>
-                        <td th:text="${cidade.estado.nome}"></td>
-                        <td colspan="2"><a class="btn btn-primary btn-sm mr-2" role="button" th:href="@{/editarCidade/{id} (id=${cidade.id})}"> <span class="oi oi-pencil" title="Editar" aria-hidden="true"></span><a data-toggle="modal" data-target="#modal-warning" class="btn btn-danger btn-sm ml-2" th:attr="data-target='#modal-warning'+${cidade.id}"><span class="oi oi-x text-light" title="Excluir" aria-hidden="true"></span></a></td>
-                        <div class="modal modal-warning fade in" th:id="modal-warning+${cidade.id}">
+                    <tr th:each="jogador : ${jogadores}">
+                        <td th:text="${jogador.id}"></td>
+                        <td th:text="${jogador.usuario.nome}"></td>
+                        <td colspan="2"><a class="btn btn-primary btn-sm mr-2" role="button" th:href="@{/editarJogador/{id} (id=${jogador.id})}"> <span class="oi oi-pencil" title="Editar" aria-hidden="true"></span><a data-toggle="modal" data-target="#modal-warning" class="btn btn-danger btn-sm ml-2" th:attr="data-target='#modal-warning'+${jogador.id}"><span class="oi oi-x text-light" title="Excluir" aria-hidden="true"></span></a></td>
+                        <div class="modal modal-warning fade in" th:id="modal-warning+${jogador.id}">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -50,7 +48,7 @@
                                         <h5>Confirma a exclusão do registro?</h5>
                                     </div>
                                     <div class="modal-footer">
-                                        <a type="button" class="btn btn-outline" th:href="@{/excluirCidade/{id} (id=${cidade.id})}">Sim</a>
+                                        <a type="button" class="btn btn-outline" th:href="@{/excluirJogador/{id} (id=${jogador.id})}">Sim</a>
                                         <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Não</button>
                                     </div>
                                 </div>

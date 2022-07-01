@@ -12,12 +12,12 @@
                 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <h4>Lista de Jogadores</h4>
+                            <h4>Lista de Duplas</h4>
                         </li>
                     </ul>
-                    <a class="btn btn-primary btn-md" th:href="@{/cadastrarJogador}" role="button">
+                    <a class="btn btn-primary btn-md" th:href="@{/cadastrarDupla}" role="button">
                         <span class="oi oi-plus" title="Cadastro" aria-hidden="true">
-                           Cadastrar Jogador
+                           Cadastrar Dupla
                         </span>
                     </a>
                 </div>
@@ -29,16 +29,20 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nome</th>
+                        <th>Nome da dupla</th>
+                        <th>Primeiro jogador</th>
+                        <th>Segundo jogador</th>
                         <th>Ação</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="jogador : ${jogadores}">
-                        <td th:text="${jogador.id}"></td>
-                        <td th:text="${jogador.usuario.nome}"></td>
-                        <td colspan="2"><a class="btn btn-primary btn-sm mr-2" role="button" th:href="@{/editarJogador/{id} (id=${jogador.id})}"> <span class="oi oi-pencil" title="Editar" aria-hidden="true"></span><a data-toggle="modal" data-target="#modal-warning" class="btn btn-danger btn-sm ml-2" th:attr="data-target='#modal-warning'+${jogador.id}"><span class="oi oi-x text-light" title="Excluir" aria-hidden="true"></span></a></td>
-                        <div class="modal modal-warning fade in" th:id="modal-warning+${jogador.id}">
+                    <tr th:each="dupla : ${duplas}">
+                        <td th:text="${dupla.id}"></td>
+                        <td th:text="${dupla.nomeDupla}"></td>
+                        <td th:text="${dupla.primeiro.nome}"></td>
+                        <td th:text="${dupla.segundo.nome}"></td>
+                        <td colspan="2"><a class="btn btn-primary btn-sm mr-2" role="button" th:href="@{/editarDupla/{id} (id=${dupla.id})}"> <span class="oi oi-pencil" title="Editar" aria-hidden="true"></span><a data-toggle="modal" data-target="#modal-warning" class="btn btn-danger btn-sm ml-2" th:attr="data-target='#modal-warning'+${dupla.id}"><span class="oi oi-x text-light" title="Excluir" aria-hidden="true"></span></a></td>
+                        <div class="modal modal-warning fade in" th:id="modal-warning+${dupla.id}">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -48,7 +52,7 @@
                                         <h5>Confirma a exclusão do registro?</h5>
                                     </div>
                                     <div class="modal-footer">
-                                        <a type="button" class="btn btn-outline" th:href="@{/excluirJogador/{id} (id=${jogador.id})}">Sim</a>
+                                        <a type="button" class="btn btn-outline" th:href="@{/excluirDupla/{id} (id=${dupla.id})}">Sim</a>
                                         <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Não</button>
                                     </div>
                                 </div>
