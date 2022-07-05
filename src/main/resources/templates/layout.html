@@ -34,17 +34,19 @@
 
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="/">Home</a>
-            <a sec:authorize="hasAuthority('cidade')" class="p-2 text-dark" th:href="@{/listarCidade}">Cidades</a>
-            <a sec:authorize="hasAuthority('estado')" class="p-2 text-dark" th:href="@{/listarEstado}">Estados</a>
-            <a sec:authorize="hasAuthority('role')" class="p-2 text-dark" th:href="@{/listarRole}">Papéis</a>
-            <a sec:authorize="hasAuthority('permissao')" class="p-2 text-dark" th:href="@{/listarPermissao}">Permissão</a>
+            <a sec:authorize="hasAuthority('Administrador')" class="p-2 text-dark" th:href="@{/listarCidade}">Cidades</a>
+            <a sec:authorize="hasAuthority('Administrador')" class="p-2 text-dark" th:href="@{/listarEstado}">Estados</a>
+            <a sec:authorize="hasAuthority('Administrador')" class="p-2 text-dark" th:href="@{/listarRole}">Papéis</a>
+            <a sec:authorize="hasAuthority('Administrador')" class="p-2 text-dark" th:href="@{/listarPermissao}">Permissões</a>
+            <a sec:authorize="hasAuthority('Administrador') || hasAuthority('usuario')" class="p-2 text-dark" th:href="@{/listarJogador}">Jogadores</a>
+            <a sec:authorize="hasAuthority('Administrador') || hasAuthority('usuario')" class="p-2 text-dark" th:href="@{/listarDupla}">Duplas</a>
         </nav>
 
 
-        <a class="btn btn-outline-primary" sec:authorize="!hasAuthority('usuario')" th:href="@{/login}">Entrar</a>
-        <span sec:authorize="hasAuthority('usuario')" sec:authentication="name"></span>
-        <a sec:authorize="hasAuthority('usuario')" class="btn btn-success mx-2" th:href="@{/cadastrarUsuario}">Cadastrar</a>
-        <a class="btn btn-outline-primary" sec:authorize="hasAuthority('usuario')" th:href="@{/logout}">Sair</a>
+        <a class="btn btn-outline-primary" sec:authorize="!hasAuthority('usuario') && !hasAuthority('Administrador')" th:href="@{/login}">Entrar</a>
+        <span sec:authorize="hasAuthority('usuario') || hasAuthority('Administrador')">Olá, </span> <span sec:authorize="hasAuthority('usuario') || hasAuthority('Administrador')" sec:authentication="name"></span>
+        <a class="btn btn-success mx-2" th:href="@{/cadastrarUsuario}">Cadastrar</a>
+        <a class="btn btn-outline-primary mx-2" sec:authorize="hasAuthority('usuario') || hasAuthority('Administrador')" th:href="@{/logout}">Sair</a>
     </div>
 </header>
 <div class="layout-main">

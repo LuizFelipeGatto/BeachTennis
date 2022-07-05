@@ -34,11 +34,13 @@ public class SecuritySettings extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-//                .antMatchers("/listarRole", "/cadastrarRole", "/salvarRole", "/editarRole", "/excluirRole").hasAuthority("role")
-//                .antMatchers("/listarPermissao", "/cadastrarPermissao", "/salvarPermissao", "/editarPermissao", "/excluirPermissao").hasAuthority("permissao")
-//                .antMatchers("/listarUsuario", "/cadastrarUsuario", "/salvarUsuario", "/editarUsuario", "/excluirUsuario").hasAuthority("usuario")
-//                .antMatchers("/listarCidade", "/cadastrarCidade", "/salvarCidade", "/editarCidade", "/excluirCidade").hasAuthority("cidade")
-//                .antMatchers("/listarEstado", "/cadastrarEstado", "/salvarEstado", "/editarEstado", "/excluirEstado").hasAuthority("estado")
+                .antMatchers("/listarRole", "/cadastrarRole", "/salvarRole", "/editarRole", "/excluirRole").hasAuthority("Administrador")
+                .antMatchers("/listarPermissao", "/cadastrarPermissao", "/salvarPermissao", "/editarPermissao", "/excluirPermissao").hasAuthority("Administrador")
+                .antMatchers("/listarUsuario", "/editarUsuario", "/excluirUsuario").hasAuthority("Administrador")
+                .antMatchers("/listarCidade", "/cadastrarCidade", "/salvarCidade", "/editarCidade", "/excluirCidade").hasAuthority("Administrador")
+                .antMatchers("/listarEstado", "/cadastrarEstado", "/salvarEstado", "/editarEstado", "/excluirEstado").hasAuthority("Administrador")
+                .antMatchers( "/cadastrarJogador", "/salvarJogador", "/editarJogador", "/excluirJogador").hasAuthority("Administrador")
+                .antMatchers( "/cadastrarDupla", "/salvarDupla", "/editarDupla", "/excluirDupla").hasAuthority("Administrador")
                 .and().formLogin().loginPage("/login").permitAll().and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").and().exceptionHandling()
                 .accessDeniedPage("/negarAcesso");
     }

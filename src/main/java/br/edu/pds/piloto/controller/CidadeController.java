@@ -3,6 +3,7 @@ package br.edu.pds.piloto.controller;
 import br.edu.pds.piloto.model.Cidade;
 import br.edu.pds.piloto.repository.CidadeRepositorio;
 import br.edu.pds.piloto.repository.EstadoRepositorio;
+import br.edu.pds.piloto.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -30,24 +31,8 @@ public class CidadeController {
     @Autowired
     private EstadoRepositorio estadoRepositorio;
 
-//    @Override
-//    public List<Categoria> getCategorias(String url){
-//
-//        String accessToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWxsZXJJZCI6Niwic2NvcGUiOlsibWFy";
-//
-//        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-//        headers.add("Authorization", accessToken);
-//
-//        RequestEntity<Object> request = new RequestEntity<>(
-//                headers, HttpMethod.GET, URI.create(url));
-//
-//
-//        ResponseEntity<Categoria[]> response = restTemplate.exchange(request, Categoria[].class);
-//
-//
-//        return Arrays.asList(response.getBody());
-//
-//    }
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @GetMapping("/cadastrarCidade")
     public ModelAndView cadastrar(Cidade cidade){
@@ -85,7 +70,16 @@ public class CidadeController {
     @GetMapping("/excluirCidade/{id}")
     public ModelAndView excluir(@PathVariable("id") Long id){
         Optional<Cidade> cidade = cidadeRepositorio.findById(id);
+        ModelAndView mv = new ModelAndView("redirect:/listarCidade");
+        if(usuarioRepository.findByCidade(id) > 0) {
+            mv.addObject("messageType", "error");
+            mv.addObject("message", "Exitem dados que fazem o uso desse cidade.");
+            return mv;
+        }
+
         cidadeRepositorio.delete(cidade.get());
+        mv.addObject("messageType", "success");
+        mv.addObject("message", "Cidade removida com sucesso.");
         return new ModelAndView("redirect:/listarCidade");
     }
 }

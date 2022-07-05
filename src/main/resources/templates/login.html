@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-    <title>Piloto</title>
+    <title>Beach Tennis - Sports</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="icon" href="/image/favicon.png" />
+    <link rel="icon" href="/image/favicon_Beach.png" />
     <!-- Bootstrap core CSS -->
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
@@ -74,7 +74,7 @@
 <body>
 <div class="login-form">
     <form th:action="@{/login}" method="post">
-        <h2 class="text-center">Projeto Piloto</h2>
+        <h2 class="text-center">Beach Tennis - Sports</h2>
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -95,10 +95,15 @@
                 <input type="password" class="form-control" name="password" placeholder="Senha" required="required">
             </div>
         </div>
+        <div class="my-2">
+            <a class="btn btn-outline-info btn-sm" th:href="@{/cadastrarUsuario}" role="button">
+                <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span> <span>Criar conta</span>
+            </a>
+        </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary login-btn btn-block">Login</button>
         </div>
-        <div class="or-seperator"><i>or</i></div>
+        <div class="or-seperator"><i>ou</i></div>
         <p class="text-center">Ou faça o login com sua conta de rede social</p>
         <div class="text-center social-btn">
             <a href="#" class="btn btn-secondary"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>

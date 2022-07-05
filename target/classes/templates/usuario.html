@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+      layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 <head>
     <meta charset="UTF-8">
     <title>Projeto piloto</title>
@@ -15,7 +16,7 @@
                         <h4>Cadastro de Usuários</h4>
                     </li>
                 </ul>
-                <a class="btn btn-primary btn-md" th:href="@{/listarUsuario}" role="button">
+                <a class="btn btn-primary btn-md" th:href="@{/listarUsuario}" sec:authorize="hasAuthority('Administrador')" role="button">
                     <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span> <span>Listar Usuários</span>
                 </a>
             </div>

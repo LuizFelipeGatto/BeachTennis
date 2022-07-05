@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+      layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Beach Tennis Sports</title>
@@ -15,7 +16,7 @@
                             <h4>Lista de Jogadores</h4>
                         </li>
                     </ul>
-                    <a class="btn btn-primary btn-md" th:href="@{/cadastrarJogador}" role="button">
+                    <a class="btn btn-primary btn-md" sec:authorize="hasAuthority('Administrador')" th:href="@{/cadastrarJogador}" role="button">
                         <span class="oi oi-plus" title="Cadastro" aria-hidden="true">
                            Cadastrar Jogador
                         </span>
